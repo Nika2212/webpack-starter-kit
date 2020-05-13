@@ -1,0 +1,36 @@
+html, body {
+  padding: 0;
+  margin: 0;
+
+  width: 100%;
+  height: 100%;
+
+  box-sizing: border-box;
+}
+input {
+  outline: none;
+}
+button {
+  outline: none;
+
+  cursor: pointer;
+}
+ul, li {
+  list-style: none;
+}
+h1, h2, h3, h4, h5 {
+  font-weight: 400;
+}
+span {
+  display: inline;
+}
+
+.webpack-logo {
+  width: 320px;
+  height: 64px;
+
+  background-image: url("/assets/image/brand.png");
+  background-size: auto;
+  background-position: center;
+  background-color: #ffffff;
+}
