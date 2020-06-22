@@ -6,16 +6,18 @@ const MiniCSSExtractPlugin = require("mini-css-extract-plugin");
 
 const isProduction = process.env.NODE_ENV === "production";
 const isDevelopment = !isProduction;
-const filename = (extension) => isProduction ? `bundle.[hash].${extension}` : `bundle.${extension}`;
+const filename = (extension) => {
+  return isProduction ? `bundle.[hash].${extension}` : `bundle.${extension}`;
+};
 const getJSLoaders = () => {
   const loaders = [
     {
       loader: "babel-loader"
     }
-  ]
+  ];
 
   if (isDevelopment) {
-    loaders.push({loader: "eslint-loader"})
+    loaders.push({loader: "eslint-loader"});
   }
 
   return loaders;
@@ -37,11 +39,7 @@ const config = {
   resolve: {
     extensions: [".js"],
     alias: {
-      "@": path.resolve(__dirname, "src"),
-      "@script": path.resolve(__dirname, "src/script"),
-      "@style": path.resolve(__dirname, "src/style"),
-      "@image": path.resolve(__dirname, "src/image"),
-      "@font": path.resolve(__dirname, "src/font"),
+      "@": path.resolve(__dirname, "src")
     }
   },
   module: {
@@ -84,9 +82,18 @@ const config = {
       filename: filename("css")
     }),
     new CopyWebpackPlugin([
-      {from: path.resolve(__dirname, "src/favicon.ico"), to: path.resolve(__dirname, "dist")},
-      {from: path.resolve(__dirname, "src/assets/image"), to: path.resolve(__dirname, "dist/assets/image")},
-      {from: path.resolve(__dirname, "src/assets/font"), to: path.resolve(__dirname, "dist/assets/font")}
+      {
+        from: path.resolve(__dirname, "src/favicon.ico"),
+        to: path.resolve(__dirname, "dist")
+      },
+      {
+        from: path.resolve(__dirname, "src/assets/image"),
+        to: path.resolve(__dirname, "dist/assets/image")
+      },
+      {
+        from: path.resolve(__dirname, "src/assets/font"),
+        to: path.resolve(__dirname, "dist/assets/font")
+      }
     ])
   ]
 };
